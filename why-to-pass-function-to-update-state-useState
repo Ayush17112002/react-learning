@@ -1,0 +1,23 @@
+UPDATING STATE `COUNTER` DIRECTLY
+Here, on first rendering a new interval is created so now there are 2 intervals running parallely, but they are so much close that even before one interval could update the value, before that, another interval takes old value and now both results in updating same value to same newer value
+const ForwardCounter = () => {
+  const [counter, setCounter] = useState(0);
+
+  const interval = setInterval(() => {
+    setCounter(counter + 1);
+  }, 1000);
+
+  return <Card>{counter}</Card>;
+};
+
+
+UPDATING STATE `COUNTER` BY PASSING FUNCTION THAT ENSURES THAT IT TAKES UPDATED VALUE
+Here, paassing function ensures that only after first interval updates the state, only after execution of that, another interval hits.
+const ForwardCounter = () => {
+  const [counter, setCounter] = useState(0);
+
+  const interval = setInterval(() => {
+    setCounter(counter + 1);
+  }, 1000);
+  return <Card>{counter}</Card>;
+};
